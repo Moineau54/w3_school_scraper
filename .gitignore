@@ -1,0 +1,5 @@
+output/*/
+.venv/
+venv/
+test.py
+.vscode/*
