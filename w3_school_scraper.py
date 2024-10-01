@@ -14,11 +14,23 @@ if __name__ == '__main__':
         url = sys.argv[1]
     except IndexError:
         print('Please provide a URL')
+        print('Usage: python w3_school_scraper.py <URL>')
         sys.exit(1)
-    #url = 'https://www.w3schools.com/css/default.asp' # test with single url
+        #url = 'https://www.w3schools.com/python/default.asp' # test with single url
 
     print(url)
-    base_url_origin = url.split('/')[0]+'//'+url.split('/')[2]+'/' + url.split('/')[3] + '/'
+    base_url_origin = ''
+    count = 0
+    lenght = url.split('/').__len__()
+    print(lenght)
+    for part in url.split('/'):
+        #print(part)
+        if count == url.split('/').__len__()-1:
+            break
+        base_url_origin = base_url_origin + part + '/'
+        count += 1
+    print(base_url_origin)
+    #base_url_origin = url.split('/')[0]+'//'+url.split('/')[2]+'/' + url.split('/')[3] + '/'
     time_base_first = 10
     time_base_second = time_base_first + 30
     

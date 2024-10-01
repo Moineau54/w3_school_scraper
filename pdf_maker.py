@@ -48,7 +48,22 @@ def scrape_course_from_array(urls):
     """
     # Create output directory if it doesn't exist
     list_of_contents = os.listdir('output')
-    output_dir = f"output/{urls[0].split('/')[2].split('.')[1]}_{urls[0].split('/')[3]}_pdf"
+    length = urls[0].split('/').__len__()
+    if length >= 6:
+        count = 0
+        output_dir = "output/"
+        for part in urls[0].split('/'):
+            if count == 2:
+                output_dir = output_dir + part.split('.')[1]
+            elif count == 3:
+                output_dir = output_dir + '_' + part
+            elif count == 4:
+                output_dir = output_dir + '_' + part
+            
+            count += 1
+        output_dir = output_dir + '_pdf'
+    else:
+        output_dir = f"output/{urls[0].split('/')[2].split('.')[1]}_{urls[0].split('/')[3]}_pdf"
     
     
     try:
@@ -71,6 +86,8 @@ def scrape_course_from_array(urls):
         if page_url:  # Ensure the line is not empty
             i += 1
             scrape_to_pdf(page_url, output_dir, i)
+    
+    print(f"\nScraped {i} pages to {output_dir}")
 
 
 
